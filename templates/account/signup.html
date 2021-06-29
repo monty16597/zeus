@@ -1,0 +1,29 @@
+{% extends '../_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Sign up{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="/static/css/auth/style.css">
+{% endblock %}
+
+{% block main_body %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8"></div>
+    <div class="col-4 bg-white custom-login-container shadow-lg d-flex align-items-center">
+      <div class="container ml-4">
+        <h2 class="display-4 fw-bold">Create an account</h2>
+        <p class="mb-4">Please, enter your details to continue</p>
+        <form class="w-75" method=post>
+
+          {% csrf_token %}
+          {{ form|crispy }}
+          <div class="d-grid gap-2 col-12 mx-auto mt-4">
+            <a href="{% url 'account_signup' %}" class="btn btn-outline-primary fw-bold custom-login-button">Sign
+              up</a>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

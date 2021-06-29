@@ -1,0 +1,43 @@
+{% load crispy_forms_tags %}
+
+<div class="vertical-nav" id="sidebar">
+    <div class="py-4 px-3 mb-4 custom-media-body">
+        <div class="media d-flex align-items-center">
+            <img src="https://miro.medium.com/max/700/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" alt="logo" width="40" height="40"
+                class="mr-3 rounded-circle shadow-lg rounded" />
+            <div class="media-body">
+                <p class="m-0 text-white">{{ user.email }}</p>
+            </div>
+        </div>
+    </div>
+
+    <p class="text-gray fw-bold text-uppercase px-3 small pb-4 mb-0">Dashboard</p>
+
+    <ul class="nav flex-column mb-0">
+        <li class="nav-item my-1 mx-3 rounded">
+            <a href="" class="nav-link custom-link"><i class="fas fa-robot mr-3"></i>Uptime</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="" class="nav-link custom-link"><i class="fas fa-robot mr-3"></i>Automate</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="#" class="nav-link custom-link"><i class="fab fa-docker mr-3"></i>Docker</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="#" class="nav-link custom-link"><i class="fab fa-aws mr-3"></i>Infrastructure</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="#" class="nav-link custom-link"><i class="fas fa-magic mr-3"></i>Misc</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a id="settings" href="" class="nav-link custom-link"><i class="fas fa-cog mr-3"></i>Settings</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item my-1 mx-3 rounded">
+            <a id="settings" href="{% url 'account_logout' %}" class="nav-link custom-link"><i
+                    class="fas fa-sign-out-alt mr-3"></i>Log out</a>
+        </li>
+        {% endif %}
+    </ul>
+
+</div>
