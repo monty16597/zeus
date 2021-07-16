@@ -42,7 +42,7 @@ def patch_jenkinsfile(request):
             selected_branch = dict(form.data)['branches'][0]
             git_c.repo.git.checkout(selected_branch)
             f = open(os.path.join(git_c.project_path, 'Jenkinsfile'))
-            jenkinsfle_data = '\n'.join(line.strip() for line in f)
+            jenkinsfle_data = ''.join(line for line in f)
             form = PatchJenkinsfile(initial={'jenkinsfile': jenkinsfle_data},)
             form.set_branches(branches=branches)
 
