@@ -14,11 +14,11 @@
     <p class="text-gray fw-bold text-uppercase px-3 small pb-4 mb-0">Dashboard</p>
 
     <ul class="nav flex-column mb-0">
-        <li class="nav-item my-1 mx-3 rounded">
+        <li class="nav-item my-1 mx-3 rounded hide">
             <a href="" class="nav-link custom-link"><i class="fas fa-robot mr-3"></i>Uptime</a>
         </li>
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a href="" class="nav-link custom-link"><i class="fas fa-robot mr-3"></i>Automate</a>
+        <li class="nav-item my-1 mx-3 rounded">
+            <a href="{% url 'automation.index' %}" class="nav-link custom-link"><i class="fas fa-robot mr-3"></i>Automate</a>
         </li>
         <li class="nav-item my-1 mx-3 rounded hide">
             <a href="#" class="nav-link custom-link"><i class="fab fa-docker mr-3"></i>Docker</a>
@@ -34,7 +34,7 @@
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item my-1 mx-3 rounded">
-            <a id="settings" href="{% url 'account_logout' %}" class="nav-link custom-link"><i
+            <a id="logout" href="{% url 'account_logout' %}" class="nav-link custom-link"><i
                     class="fas fa-sign-out-alt mr-3"></i>Log out</a>
         </li>
         {% endif %}
