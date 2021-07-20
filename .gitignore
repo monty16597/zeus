@@ -10,4 +10,5 @@ __pycache__/
 *.log
 db.sqlite3
 media
-./workspace
+workspace
+./workspace/*

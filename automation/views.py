@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
-from .utils import create_automation_workspace, GitController
+from .utils import create_automation_workspace, GitController, convert_crlf_lf
 from django.contrib.auth.decorators import login_required
 from .forms import AutomationForm, PatchJenkinsfile
 import os
@@ -47,13 +47,17 @@ def patch_jenkinsfile(request):
             form.set_branches(branches=branches)
 
         elif form.is_valid() and "Submit" in request.POST['button']:
+
             automation_branch = 'feature/zeus-automation-%s' % uuid.uuid4().hex[:4]
             automation_branch_head = git_c.repo.create_head(automation_branch)
             git_c.repo.git.checkout(automation_branch)
-            f = open(os.path.join(git_c.project_path, 'Jenkinsfile'), mode="w")
+            jenkinsfile_path = os.path.join(git_c.project_path, 'Jenkinsfile')
+            # jenkinsfile_file_permission = int(644)
+            f = open(jenkinsfile_path, mode='w')
             f.writelines(form.data.get('jenkinsfile'))
             f.close()
-
+            convert_crlf_lf(jenkinsfile_path)
+            # os.chmod(jenkinsfile_path, jenkinsfile_file_permission)
             git_c.repo.index.add(["Jenkinsfile"])
             git_c.repo.index.commit(form.data.get('commit_message'))
             git_c.repo.git.push('--set-upstream', 'origin', automation_branch_head)
