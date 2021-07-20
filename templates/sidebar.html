@@ -4,43 +4,44 @@
     <div class="py-4 px-3 custom-media-body m-3">
         <div class="media d-flex align-items-center">
             <img src="https://miro.medium.com/max/700/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" alt="logo" width="40" height="40"
-                class="mr-3 ml-3 rounded-circle shadow-lg rounded" />
-            <span class="m-2"></span>
+                class="me-3 ml-3 rounded-circle shadow-lg rounded" />
             <div class="media-body">
-                <p class="m-0 text-white">{{ user.username }}</p>
-                <p class="m-0 text-white">{{ user.email }}</p>
+                <p class="m-0 text-white fw-bold">{{ user.username }}</p>
+                <p class="m-0 text-white small">{{ user.email }}</p>
             </div>
         </div>
     </div>
 
-    <p class="text-gray fw-bold text-uppercase px-3 small pb-4 mb-0">Dashboard</p>
+    <p class="text-gray fw-bold text-uppercase ps-4 small mb-0 mt-4">Dashboard</p>
 
     <ul class="nav flex-column mb-0">
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a href="" class="nav-link custom-link"><i class="fas fa-robot mr-3"></i>Uptime</a>
-        </li>
-        <li class="nav-item my-1 mx-3 rounded">
-            <a href="{% url 'automation.index' %}" class="nav-link custom-link"><i
-                    class="fas fa-robot mr-3"></i>Automate</a>
-        </li>
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a href="#" class="nav-link custom-link"><i class="fab fa-docker mr-3"></i>Docker</a>
-        </li>
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a href="#" class="nav-link custom-link"><i class="fab fa-aws mr-3"></i>Infrastructure</a>
-        </li>
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a href="#" class="nav-link custom-link"><i class="fas fa-magic mr-3"></i>Misc</a>
-        </li>
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a id="settings" href="" class="nav-link custom-link"><i class="fas fa-cog mr-3"></i>Settings</a>
-        </li>
         {% if user.is_authenticated %}
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="" class="nav-link custom-link"><i class="fas fa-robot me-3"></i>Uptime</a>
+        </li>
         <li class="nav-item my-1 mx-3 rounded">
-            <a id="logout" href="{% url 'account_logout' %}" class="nav-link custom-link"><i
-                    class="fas fa-sign-out-alt mr-3"></i>Log out</a>
+            <a href="{% url 'automation.index' %}"
+                class="ml-3 nav-link custom-link {% if page == 'automation' %}active{% endif %}"><i
+                    class="fas fa-robot me-2"></i>Automation</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="#" class="nav-link custom-link"><i class="fab fa-docker me-3"></i>Docker</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="#" class="nav-link custom-link"><i class="fab fa-aws me-3"></i>Infrastructure</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="#" class="nav-link custom-link"><i class="fas fa-magic me-3"></i>Misc</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a id="settings" href="" class="nav-link custom-link"><i class="fas fa-cog me-3"></i>Settings</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded">
+            <a id="logout" href="{% url 'account_logout' %}" class="ml-3 nav-link custom-link"><i
+                    class="fas fa-sign-out-alt me-2"></i>Log out</a>
         </li>
         {% endif %}
+        <p>Not Authenticated to Access this page.</p>
     </ul>
 
 </div>

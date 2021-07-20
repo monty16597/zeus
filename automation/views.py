@@ -23,7 +23,7 @@ def index(request):
     else:
         form = AutomationForm()
     template = loader.get_template('automation/index.html')
-    context = {'form': form}
+    context = {'page': "automation", 'form': form}
     return HttpResponse(template.render(context, request))
 
 @login_required
@@ -65,5 +65,5 @@ def patch_jenkinsfile(request):
 
     # if a GET (or any other method) we'll create a blank form
     template = loader.get_template('automation/patch_jenkinsfile.html')
-    context = {'form': form,}
+    context = {'page': "automation", 'form': form,}
     return HttpResponse(template.render(context, request))
