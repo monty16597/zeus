@@ -32,13 +32,19 @@ class GitController:
         if os.path.exists(PROJECT_WORKSPACE):
             shutil.rmtree(PROJECT_WORKSPACE)
         os.mkdir(PROJECT_WORKSPACE)
-        self.repo.clone_from(url=self.url, to_path=PROJECT_WORKSPACE)
+        self.repo.clone_from(url=self.url, to_path=PROJECT_WORKSPACE,)
         self.project_path = PROJECT_WORKSPACE
+        config = self.repo.config_writer()
+        config.set_value("core", "filemode", "false")
+        config.release()
     
     def set_repo(self):
         PROJECT_WORKSPACE = os.path.join(AUTOMATION_WORKSPACE_DIR, self.project_name)
         self.repo = repo.base.Repo(PROJECT_WORKSPACE)
         self.project_path = PROJECT_WORKSPACE
+        config = self.repo.config_writer()
+        config.set_value("core", "filemode", "false")
+        config.release()
 
 class JenkinsfileController:
     def __init__(self):
@@ -46,3 +52,16 @@ class JenkinsfileController:
     
     def replace_jenkinsfile(self, content):
         pass
+
+def convert_crlf_lf(file_path):
+    # replacement strings
+    WINDOWS_LINE_ENDING = b'\r\n'
+    UNIX_LINE_ENDING = b'\n'
+
+    with open(file_path, 'rb') as open_file:
+        content = open_file.read()
+        
+    content = content.replace(WINDOWS_LINE_ENDING, UNIX_LINE_ENDING)
+
+    with open(file_path, 'wb') as open_file:
+        open_file.write(content)
