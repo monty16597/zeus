@@ -2,18 +2,16 @@
 {% load crispy_forms_tags %}
 {% block title %}Automation{% endblock %}
 {% block stylesheets %}
-<!-- <link rel="stylesheet" href="/static/css/auth/style.css"> -->
-<link rel="stylesheet" href="/static/css/base.css">
-<link rel="stylesheet" href="/static/css/common/style.css">
 {% endblock %}
 
 {% block content %}
 
 <form action="{% url 'automation.patch.jenkinsfile' %}" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" name="button" value="Submit">
-    <input type="submit" name="button" value="Load">
+    {{ form|crispy }}
+    <button class="btn btn-primary mt-3 fw-bold cutom-button" type="submit" name="button" value="Submit">Submit</button>
+    <button class="btn btn-outline-primary mt-3 fw-bold cutom-button" type="submit" name="button"
+        value="Load">Load</button>
 </form>
 
 {% endblock content %}

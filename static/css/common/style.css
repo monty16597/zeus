@@ -22,10 +22,8 @@
 
 
 body {
-
     font-family: 'Poppins', sans-serif !important;
     background: #F4F7FC;
-    /* background: linear-gradient(to right, #654ea3, #eaafc8); */
     height: 100vh;
     overflow-x: hidden;
 }
@@ -38,16 +36,14 @@ body {
     top: 0;
     left: 0;
     background-color: #0F123F;
-    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
     transition: all 0.4s;
 }
 
 /* custom header body */
-/* .custom-media-body {
+.custom-media-body {
     border-radius: 20px;
-    background-color: white;
-    margin: 10px;
-} */
+    background-color: #ffffff63;
+}
 
 .page-content {
     width: calc(100% - 17rem);
@@ -88,17 +84,23 @@ body {
     color: #aaa;
 }
 
+.custom-input {
+    background-color: #E9EFF6 !important;
+    border-radius: 10px !important;
+}
+
+input {
+    height: 3em !important;
+    background-color: #E9EFF6 !important;
+    border-radius: 10px !important;
+    margin-bottom: 10px;
+}
+
 .custom-link {
     letter-spacing: 0.07em;
     text-transform: uppercase;
     border-radius: 10px;
     color: white;
-}
-
-.custom-input {
-    /* height: 3em !important; */
-    background-color: #E9EFF6 !important;
-    border-radius: 10px !important;
 }
 
 .custom-link:hover {
@@ -114,7 +116,7 @@ body {
 }
 
 .cutom-button {
-    /* height: 3em !important; */
+    height: 3em !important;
     border-radius: 10px !important;
     padding-left: 2em;
     padding-right: 2em;
