@@ -19,10 +19,16 @@ body {
     justify-content: center;
     align-items: center;
     display: flex;
+    font-weight: normal !important;
 }
 
 .custom-input {
     height: 3em !important;
     background-color: #E9EFF6 !important;
     border-radius: 10px !important;
+}
+
+/* TODO: find a better way to hide labels in login form */
+label {
+    display: none;
 }

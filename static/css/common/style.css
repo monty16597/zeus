@@ -116,10 +116,11 @@ input {
 }
 
 .cutom-button {
-    height: 3em !important;
+    height: 2.5em !important;
     border-radius: 10px !important;
     padding-left: 2em;
     padding-right: 2em;
+    font-weight: normal !important;
 }
 
 .hide {
