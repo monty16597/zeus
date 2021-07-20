@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import os
 # GENERAL
 # ------------------------------------------------------------------------------
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -10,6 +10,10 @@ SECRET_KEY = '43)%4yx)aa@a=+_c(fn&kf3g29xax+=+a&key9i=!98zyim=8j'
 DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+
+# Temparoray Workspace
+TEMP_WORKSPACE_NAME = "workspace"
+TEMP_WORKSPACE_DIR = os.path.join(BASE_DIR,TEMP_WORKSPACE_NAME)
 
 # APPS
 # ------------------------------------------------------------------------------
