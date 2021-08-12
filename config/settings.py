@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     # Third-party
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.keycloak',
     'crispy_forms',
     'debug_toolbar',
     'widget_tweaks',
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     # Local
     'accounts',
     'pages',
+    'kubernetes',
 ]
 
 # MIDDLEWARE

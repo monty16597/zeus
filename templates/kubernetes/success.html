@@ -1,0 +1,42 @@
+{% extends '_skeleton.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Kubernetes{% endblock %}
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-success" role="alert">
+                Kubernetes Agent Configurations Added Successfully.
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr class="table-light">
+                        <td class="fw-bold">Cluster Name</td>
+                        <td>{{ config.cluster_name }}</td>
+                    </tr>
+                    <tr class="table-light">
+                        <td class="fw-bold">Agent URL</td>
+                        <td>{{ config.agent_url }}</td>
+                    </tr>
+                    <tr class="table-light">
+                        <td class="fw-bold">Username</td>
+                        <td>{{ config.username }}</td>
+                    </tr>
+                    <tr class="table-light">
+                        <td class="fw-bold">Password</td>
+                        <td>{{ config.password }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (".alert").alert('close')
+</script>
+{% endblock content %}

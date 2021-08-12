@@ -1,0 +1,147 @@
+{% extends '_skeleton.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Kubernetes{% endblock %}
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="row">
+        <h3 class="fw-bold">Overview - {{ cluster_name }}</h3>
+        <div class="card-list text-center col mx-2">
+            <p>Namespace</p>
+            <h1 class="fw-bold">{{ data.ns_count }}</h1>
+        </div>
+    
+        <div class="card-list text-center col mx-2">
+            <p>Pods</p>
+            <h1 class="fw-bold">{{ data.pd_count }}</h1>
+        </div>
+    
+        <div class="card-list text-center col mx-2">
+            <p>Services</p>
+            <h1 class="fw-bold">{{ data.svc_count }}</h1>
+        </div>
+
+        <div class="card-list text-center col mx-2">
+            <p>Ingress</p>
+            <h1 class="fw-bold">{{ data.ingress_count }}</h1>
+        </div>
+
+        <div class="card-list text-center col mx-2">
+            <p>PVC</p>
+            <h1 class="fw-bold">{{ data.pvc_count }}</h1>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <h3 class="fw-bold mt-3">Details</h3>
+
+    <div class="row">
+        <div class="col">
+            <div class="card p-0 custom-card-shadow overflow-hidden">
+                <div class="card-header fw-bold">
+                  Namespaces
+                </div>
+                <div class="card-body p-0 custom-card-radius-bottom">
+                    <div class="list-group h-250" id="namespaces-tab" role="namespace-list">
+                        {% for namespace in data.namespaces_list %}
+                        <a href="#" class="list-group-item list-group-item-action custom-dashboard-list-item">{{ namespace }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="col">
+            <div class="card p-0 custom-card-shadow overflow-hidden">
+                <div class="card-header fw-bold">
+                  Ingress
+                </div>
+                <div class="card-body p-0 custom-card-radius-bottom">
+                    <div class="list-group h-250" id="namespaces-tab" role="namespace-list">
+                        {% for ingress in data.ingress_list %}
+                        <a href="#" class="list-group-item list-group-item-action custom-dashboard-list-item">{{ ingress }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-4">
+
+        <div class="col">
+            <div class="card p-0 custom-card-shadow overflow-hidden">
+                <div class="card-header fw-bold">
+                  Pods
+                </div>
+                <div class="card-body p-0 custom-card-radius-bottom">
+                    <div class="list-group-item list-group-item-action custom-dashboard-list-item d-flex fw-bold position-relative bg-light">
+                        <p class="col p-0 my-auto">
+                            Name
+                        </p>
+                        <p class="col-1 text-center my-auto">
+                            Restarts
+                        </p>
+                        <p class="col-2 text-center my-auto">
+                            Status
+                        </p>
+                        <p class="col-2 text-center my-auto">
+                            Uptime
+                        </p>
+                        <p class="col-1 text-center my-auto">
+                            Action
+                        </p>
+                    </div>
+                    <div class="list-group h-250" id="namespaces-tab" role="namespace-list">
+                        {% for pod in data.pods_list %}
+                        <div class="list-group-item list-group-item-action custom-dashboard-list-item d-flex">
+                            <p class="col p-0 my-auto">
+                                {{ pod.name }}
+                            </p>
+                            <p class="col-1 text-center my-auto">
+                                {{ pod.status.restart }}
+                            </p>
+                            <p class="col-2 text-center my-auto">
+                                <span class="badge rounded-pill {% if pod.status.state == 'Running' %}bg-success{% else %}bg-danger{% endif %} ">{{ pod.status.state }}</span>
+                            </p>
+                            <p class="col-2 text-center my-auto">
+                                {{ pod.start_time }}
+                            </p>
+
+
+
+                            <div class="col-1 d-flex justify-content-center my-auto">
+                                <div class="dropdown">
+                                    <button
+                                        class="action-button text-dark btn btn-outline-light border-0 m-1 d-flex justify-content-center align-items-center"
+                                        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <em class="fas fa-ellipsis-h px-0 py-1 fs-5"></em>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a href="" class="desc-pods dropdown-item" data-podname="{{ pod.name }}" data-namespace="default" data-clustername="{{ cluster_name }}" class="dropdown-item">Logs</a></li>
+                                        <li><a href="" class="dropdown-item">Edit</a></li>
+                                        <li><a href="" class="dropdown-item">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+              </div>
+        </div>
+
+</section>
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="/static/js/kubernetes/main.js"></script>
+{% endblock scripts %}

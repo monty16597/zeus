@@ -1,0 +1,92 @@
+{% extends '_skeleton.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Kubernetes{% endblock %}
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col d-flex justify-content-start">
+                <h1>Connected Kubernetes Agent</h1>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <input type="text" name="" id="searchbar" class="form-control text-center my-auto me-2">
+                <a href="" class="btn m-1 d-flex justify-content-center align-items-center"><em
+                        class="fas fa-search p-2"></em></a>
+                <a href="" class="btn btn-primary m-1 d-flex justify-content-center align-items-center"
+                    data-bs-toggle="modal" data-bs-target="#addNewAgent"><em class="fas fa-plus p-2"></em></a>
+
+            </div>
+        </div>
+        <div class="modal fade" id="addNewAgent" tabindex="-1" aria-labelledby="addNewAgentLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="addNewAgentLabel">Add kubenetes agent</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/kubernetes/" method="post" class="mt-3 form-group">
+                        <div class="modal-body">
+                            <p class="p-0 m-0">Run zeus kubernetes agent on the kubernetes cluster</p>
+                            <p class=" p-0 m-0">If the agent is already running. Please configure the details</p>
+                            <hr>
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            {% for error, msg in form.errors %}
+                            <li><strong>{{ error|escape }}: {{ msg|escape }}</strong></li>
+                            {% endfor %}
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary cutom-button"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary cutom-button" name="button" value="Submit">Save
+                                changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</section>
+
+<section>
+    <div class="container-fluid mt-5">
+        <div class="row d-flex justify-content-center">
+            {% for config in configs %}
+            <div class="col-5 my-2 mx-2 card-list d-flex justify-content-end">
+                <div class="col">
+                    <h5 class="font-weight-bold">{{ config.cluster_name }}</h5>
+                    <p class="mb-0">{{ config.agent_url }}</p>
+                </div>
+                <div class="col d-flex justify-content-end my-auto">
+                    <div class="dropdown">
+                        <button
+                            class="action-button text-dark btn btn-outline-light border-0 m-1 d-flex justify-content-center align-items-center"
+                            type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <em class="fas fa-ellipsis-h px-0 py-1 fs-5"></em>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a href="{% url 'kubernetes.connect' cluster_name=config.cluster_name %}"
+                                    class="dropdown-item">Connect</a></li>
+                            <li><a class="dropdown-item">Edit</a></li>
+                            <li><a href="{% url 'kubernetes.delete' cluster_name=config.cluster_name %}"
+                                    class="dropdown-item">Delete</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
+
+{% endblock content %}

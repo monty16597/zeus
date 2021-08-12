@@ -7,6 +7,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('pages.urls')),
     path('automation/', include('automation.urls')),
+    path('kubernetes/', include('kubernetes.urls')),
 ]
 
 if settings.DEBUG:

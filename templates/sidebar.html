@@ -17,29 +17,33 @@
     <ul class="nav flex-column mb-0">
         {% if user.is_authenticated %}
         <li class="nav-item my-1 mx-3 rounded hide">
-            <a href="" class="nav-link custom-link"><i class="fas fa-robot me-3"></i>Uptime</a>
+            <a href="" class="nav-link custom-link"><em class="fas fa-robot me-3"></em>Uptime</a>
         </li>
         <li class="nav-item my-1 mx-3 rounded">
             <a href="{% url 'automation.index' %}"
-                class="ml-3 nav-link custom-link {% if page == 'automation' %}active{% endif %}"><i
-                    class="fas fa-robot me-2"></i>Automation</a>
-        </li>
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a href="#" class="nav-link custom-link"><i class="fab fa-docker me-3"></i>Docker</a>
-        </li>
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a href="#" class="nav-link custom-link"><i class="fab fa-aws me-3"></i>Infrastructure</a>
-        </li>
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a href="#" class="nav-link custom-link"><i class="fas fa-magic me-3"></i>Misc</a>
-        </li>
-        <li class="nav-item my-1 mx-3 rounded hide">
-            <a id="settings" href="" class="nav-link custom-link"><i class="fas fa-cog me-3"></i>Settings</a>
+                class="ml-3 nav-link custom-link {% if page == 'automation' %}active{% endif %}"><em
+                    class="fas fa-robot me-2"></em>Automation</a>
         </li>
         <li class="nav-item my-1 mx-3 rounded">
-            <a id="logout" href="{% url 'account_logout' %}" class="ml-3 nav-link custom-link"><i
-                    class="fas fa-sign-out-alt me-2"></i>Log out</a>
+            <a href="{% url 'kubernetes.index' %}"
+                class="ml-3 nav-link custom-link {% if page == 'kubernetes' %}active{% endif %}"><em
+                    class="fas fa-robot me-2"></em>Kubernetes</a>
         </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="#" class="nav-link custom-link"><em class="fab fa-aws me-3"></em>Infrastructure</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded hide">
+            <a href="#" class="nav-link custom-link"><em class="fas fa-magic me-3"></em>Misc</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded">
+            <a id="settings" href="" class="nav-link custom-link"><em class="fas fa-cog me-3"></em>Settings</a>
+        </li>
+        <li class="nav-item my-1 mx-3 rounded">
+            <a id="logout" href="{% url 'account_logout' %}" class="ml-3 nav-link custom-link"><em
+                    class="fas fa-sign-out-alt me-2"></em>Log out</a>
+        </li>
+        {% else %}
+        <p>Not Authenticated to Access this page.</p>
         {% endif %}
         <p>Not Authenticated to Access this page.</p>
     </ul>

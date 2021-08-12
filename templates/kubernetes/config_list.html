@@ -1,0 +1,39 @@
+{% extends '_skeleton.html' %}
+{% block title %}Kubernetes{% endblock %}
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="row">
+        <div class="col">
+            <h3 class="display-4">Available configs</h3>
+            <p class="p-0 m-0">Run zeus kubernetes agent on the kubernetes cluster</p>
+            <p class=" p-0 m-0">If the agent is already running. Please configure the details</p>
+
+
+            {% for config in object_list %}
+            <div class="card-list p-3 my-3">
+                <div class="row">
+                    <div class="col-6 d-flex justify-content-start">
+                        <div>
+                            <h5 class="font-weight-bold">{{ config.cluster_name }}</h5>
+                            <p class="mb-0">{{ config.agent_url }}</p>
+                        </div>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary m-1"><em
+                                class="fas fa-pencil-alt p-2"></em></button>
+                        <button type="button" class="btn btn-danger m-1"><em class="fas fa-trash-alt p-2"></em></button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
